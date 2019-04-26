@@ -31,9 +31,9 @@
                 <td>{{$veiculo->nome}}</td>
                 <td>{{$veiculo->marca->nome}}</td>
                 <td>{{$veiculo->cor->nome}}</td>
-                <td>R$ {{number_format($veiculo->valor, 2, ',', '.')}}</td>
+                <td>R$ {{number_format($veiculo->valor_total, 2, ',', '.')}}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary">Editar</button>
+                    <a href="veiculos/{{$veiculo->id}}/edit" class="btn btn-outline-primary">Editar</a>
                     <a href="veiculos/{{$veiculo->id}}/delete"  class="btn btn-outline-danger">Apagar</a>
                 </td>
             </tr>

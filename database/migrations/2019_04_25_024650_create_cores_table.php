@@ -16,7 +16,8 @@ class CreateCoresTable extends Migration
         Schema::create('cores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
-            $table->string('variacao');
+            $table->integer('modificador');
+            $table->integer('variacao');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('conteudo')
-    <form method="post" action="/">
+    <form method="post" action="/veiculos/{{$veiculo->id}}/update">
         @csrf
         <div class="form-group">
             <label >Nome</label>
-            <input type="text" name="nome" class="form-control" required >
+            <input type="text" value="{{$veiculo->nome}}" name="nome" class="form-control" required >
 
         </div>
 
@@ -13,8 +13,8 @@
             <label >Marca</label>
             <select name="marca" id="marcas" class="form-control" required>
                 @foreach($marcas as $marca)
-                <option value="{{$marca->id}}">{{$marca->nome}}</option>
-               @endforeach
+                    <option {{($veiculo->marca_id == $marca->id)?'selected':''}} value="{{$marca->id}}">{{$marca->nome}}</option>
+                @endforeach
             </select>
         </div>
 
@@ -22,7 +22,7 @@
             <label >Cor</label>
             <select name="cor" id="cores" class="form-control" required>
                 @foreach($cores as $cor)
-                    <option value="{{$cor->id}}">{{$cor->nome}}</option>
+                    <option {{($veiculo->cor_id == $cor->id)?'selected':''}}  value="{{$cor->id}}">{{$cor->nome}}</option>
                 @endforeach
             </select>
         </div>
@@ -30,10 +30,12 @@
         <div class="form-group">
             <label >Acessório</label>
             <select name="acessorio" id="acessorios" class="form-control" required>
-                <option value="0">Nenhum Acessório Selecionado</option>
-                @foreach($acessorios as $acessorio)
-                    <option value="{{$acessorio->id}}">{{$acessorio->nome}}</option>
-                @endforeach
+                <option {{($veiculo->acessorio_id == '0')?'selected':''}} value="0">Nenhum Acessório Selecionado</option>
+
+                    @foreach($acessorios as $acessorio)
+                        <option {{($veiculo->acessorio_id == $acessorio->id)?'selected':''}}  value="{{$acessorio->id}}">{{$acessorio->nome}}</option>
+                    @endforeach
+
 
 
             </select>
@@ -47,20 +49,20 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">R$ </div>
                 </div>
-                <input type="number" id="valorBase" class="form-control" name="valor" required>
+                <input type="number" value="{{$veiculo->valor_base}}" id="valorBase" class="form-control" name="valor" required>
                 <div class="input-group-append">
                     <span class="input-group-text">,00</span>
                 </div>
 
-        </div>
+            </div>
         </div>
 
         <div class="form-group">
             <label >Status</label>
             <select name="status" class="form-control" >
 
-                    <option value="0">Disponível</option>
-                    <option value="1">Vendido</option>
+                <option  {{($veiculo->vendido == 0)?'selected':''}} value="0">Disponível</option>
+                <option  {{($veiculo->vendido == 1)?'selected':''}} value="1">Vendido</option>
 
             </select>
         </div>
@@ -82,9 +84,9 @@
     @if($errors->any())
         <div class="alert alert-danger" role="alert">
             <ul>
-           @foreach($errors->all() as $error)
-               <li>{{$error}}</li>
-           @endforeach
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
             </ul>
         </div>
     @endif
@@ -104,8 +106,8 @@
             $.post('/api/veiculos/modificavalor',{'cor':cor, 'marca':marca, 'valorbase':valorBase, 'acessorio':acessorio}).done(function(data){
 
 
-            $('#valorTotal').val(data.valor_total);
-            $('#calculoTotal').text(data.str_valor);
+                $('#valorTotal').val(data.valor_total);
+                $('#calculoTotal').text(data.str_valor);
             });
 
 
@@ -124,7 +126,7 @@
         }
 
         $(document).ready(function(e){
-           //Atualiza o valor ao carregar a página
+            //Atualiza o valor ao carregar a página
             atualizaValor();
 
             //Atualiza o valor de acordo com o valor base
@@ -159,8 +161,8 @@
                     atualizaValor();
                 });
 
-                });
             });
+        });
 
     </script>
 

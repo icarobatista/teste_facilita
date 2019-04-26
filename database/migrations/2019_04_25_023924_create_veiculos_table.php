@@ -18,7 +18,9 @@ class CreateVeiculosTable extends Migration
             $table->string("nome");
             $table->integer("cor_id");
             $table->integer("marca_id");
-            $table->integer("valor");
+            $table->integer("acessorio_id")->default(0);
+            $table->integer("valor_base");
+            $table->integer("valor_total");
             $table->boolean("vendido")->default('0');
 
 

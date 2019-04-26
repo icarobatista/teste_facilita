@@ -9,7 +9,7 @@ class Veiculo extends Model
 {
     //
     use SoftDeletes;
-
+    protected $guarded = [];
     public function marca(){
         return $this->belongsTo('App\Marca');
     }

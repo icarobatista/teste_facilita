@@ -12,7 +12,11 @@
 */
 
 Route::get('/', 'VeiculosController@index');
+Route::post('/', 'VeiculosController@store');
 Route::get('/veiculos/create', 'VeiculosController@create');
+Route::post('/veiculos/{id}/update', 'VeiculosController@update');
+Route::get('/veiculos/{id}/edit', 'VeiculosController@edit');
 Route::get('/veiculos/{id}/delete', 'VeiculosController@destroy');
 
 Route::get('/marcas/{id}/cores', 'MarcasController@cores');
+

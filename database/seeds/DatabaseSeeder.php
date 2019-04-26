@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
          $this->call(CoresTableSeeder::class);
          $this->call(MarcasTableSeeder::class);
          $this->call(CorMarcaTableSeeder::class);
+         $this->call(ModificadoresTableSeeder::class);
+         $this->call(AcessoriosTableSeeder::class);
     }
 }

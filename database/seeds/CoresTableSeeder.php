@@ -16,21 +16,24 @@ class CoresTableSeeder extends Seeder
         DB::table('cores')->insert([
             'id'=>1,
             'nome'=>'Preto',
-            'variacao'=>'+500',
+            'modificador'=>1,
+            'variacao'=>500,
             'created_at'=>date('Y-m-d H:i:s')
         ]);
 
         DB::table('cores')->insert([
             'id'=>2,
             'nome'=>'Prata',
-            'variacao'=>'-700',
+            'modificador'=>2,
+            'variacao'=>700,
             'created_at'=>date('Y-m-d H:i:s')
         ]);
 
         DB::table('cores')->insert([
             'id'=>3,
             'nome'=>'Branco',
-            'variacao'=>'+1000',
+            'modificador'=>1,
+            'variacao'=>1000,
             'created_at'=>date('Y-m-d H:i:s')
         ]);
     }
